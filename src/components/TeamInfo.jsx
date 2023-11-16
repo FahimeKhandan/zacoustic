@@ -1,6 +1,6 @@
 import React from 'react'
 import TeamIconAndName from './TeamIconAndName'
-import TeamMembers from './TeamMembers'
+import TeamMembers from './TeamMembersPanel'
 
 export default function TeamInfo() {
   return (
