@@ -29,7 +29,7 @@ export default function TeamMembers({ openAddMemberPanel }) {
       </div>
       <ul>
         {members.map((member, index) => (
-          <MembersList member={member} key={member + index} />
+          <MembersList member={member} onEditMode={false} key={member + index} />
         ))}
       </ul>
     </div>

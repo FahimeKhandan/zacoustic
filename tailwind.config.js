@@ -10,6 +10,7 @@ module.exports = {
       anhancer: "#007980",
       "gray-100": " #F1F1F1",
       "gray-200": "#D9D9D9",
+      "gray-300": "#E2E2E8",
       "gray-700": "#2F2F2F",
     },
     extend: {},

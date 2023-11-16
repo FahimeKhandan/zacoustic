@@ -14,3 +14,7 @@ p {
     font-weight: 500;
     line-height: normal;
 }
+
+input:focus-visible{
+    outline: none;
+}
