@@ -1,12 +1,12 @@
-import React from 'react'
-import TeamIconAndName from './TeamIconAndName'
-import TeamMembers from './TeamMembersPanel'
+import React from "react";
+import TeamIconAndName from "./TeamIconAndName";
+import TeamMembers from "./TeamMembersPanel";
 
-export default function TeamInfo() {
+export default function TeamInfo({ openAddMemberPanel }) {
   return (
-    <div className='w-full'>
-        <TeamIconAndName/>
-        <TeamMembers/>
+    <div className="w-full">
+      <TeamIconAndName />
+      <TeamMembers openAddMemberPanel={() => openAddMemberPanel()} />
     </div>
-  )
+  );
 }

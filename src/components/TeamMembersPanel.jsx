@@ -3,7 +3,7 @@ import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import MembersList from "./MembersList";
 
-export default function TeamMembers() {
+export default function TeamMembers({ openAddMemberPanel }) {
   const members = [
     {
       name: "Bessie Cooper",
@@ -20,11 +20,16 @@ export default function TeamMembers() {
       <div className="bg-gray-100 w-full px-8 py-5 my-6">
         <PeopleAltOutlinedIcon className="mr-5 text-secandary" />
         <span className="text-primary"> 6 members</span>
-        <PersonAddAltIcon className="float-right text-secandary" />
+        <button
+          className="float-right text-secandary"
+          onClick={() => openAddMemberPanel()}
+        >
+          <PersonAddAltIcon />
+        </button>
       </div>
       <ul>
-        {members.map((member) => (
-          <MembersList member={member} />
+        {members.map((member, index) => (
+          <MembersList member={member} key={member + index} />
         ))}
       </ul>
     </div>
