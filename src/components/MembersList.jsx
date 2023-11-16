@@ -1,28 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function MembersList() {
-  const members = [
-    {
-      name: "Bessie Cooper",
-      roll: "Agent",
-    },
-    {
-      name: "Cameron Williamson",
-      roll: "Agent",
-    },
-  ];
+export default function MembersList({ member }) {
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <ul className="px-4">
-      {members.map((member) => (
-        <li className="flex mb-3">
-          <div className="rounded-full bg-gray-200 w-[44px] h-[44px]"></div>
-          <div className="ml-4">
-            <p className="text-primary">{member.name}</p>
-            <span className="text-disabled">{member.roll}</span>
-          </div>
-        </li>
-      ))}
-    </ul>
+    <li
+      className="flex items-center mb-3 px-4 py-0.5 hover:bg-gray-100"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="rounded-full bg-gray-200 w-[44px] h-[44px]"></div>
+      <div className="flex flex-col ml-4">
+        <p className="text-primary mb-1">{member.name}</p>
+        <span className="text-disabled">{member.roll}</span>
+      </div>
+      {isHovered && <button className="text-anhancer ml-auto">Remove</button>}
+    </li>
   );
 }
