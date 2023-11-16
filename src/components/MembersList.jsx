@@ -17,10 +17,10 @@ export default function MembersList({
       onMouseLeave={() => setIsHovered(false)}
       onClick={onEditMode && !disabled ? () => addToMembers(member) : undefined}
     >
-      <div className="rounded-full bg-gray-200 w-[44px] h-[44px]"></div>
+      <div className="rounded-full bg-secandary-200 w-[44px] h-[44px]"></div>
       <div className="flex flex-col ml-4">
         <p className="text-primary mb-1">{member.name}</p>
-        {/* <span className="text-disabled">{member.roll}</span> */}
+        <span className="text-disabled">{member.role}</span>
       </div>
       {isHovered && !onEditMode && (
         <button className="text-anhancer ml-auto">Remove</button>

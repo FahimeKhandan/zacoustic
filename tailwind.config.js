@@ -6,6 +6,7 @@ module.exports = {
       white: "#ffffff",
       primary: "#474E55",
       secandary: "#425B76",
+      "secandary-200": "#49C2CB",
       disabled: "#7B93AF",
       anhancer: "#007980",
       "gray-100": " #F1F1F1",

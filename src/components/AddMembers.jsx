@@ -38,11 +38,11 @@ export default function AddMembers() {
       <div className="px-2 flex gap-x-4 gap-y-2 flex-wrap border-b border-gray-300 pb-2 mb-2">
         {newMembers.map((user, index) => (
           <div
-            className="flex items-center rounded-full bg-gray-100 max-w-fit text-xs text-primary pr-2"
+            className="flex items-center rounded-full bg-gray-100 pr-2 max-w-[148px]"
             key={user + index}
           >
-            <div className="rounded-full bg-gray-200 mr-2 w-8 h-8"></div>
-            {user.name}
+            <div className="rounded-full bg-secandary-200 min-w-[32px] w-8 h-8"></div>
+            <p className="truncate text-xs text-primary ml-2"> {user.name}</p>
           </div>
         ))}
         <input

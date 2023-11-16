@@ -7,11 +7,11 @@ export default function TeamMembers({ openAddMemberPanel }) {
   const members = [
     {
       name: "Bessie Cooper",
-      roll: "Agent",
+      role: "Agent",
     },
     {
       name: "Cameron Williamson",
-      roll: "Agent",
+      role: "Agent",
     },
   ];
 
