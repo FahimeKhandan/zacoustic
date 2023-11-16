@@ -5,10 +5,12 @@ export default function MembersList({ member, onEditMode, addToMembers }) {
 
   return (
     <li
-      className={`flex items-center mb-3 px-4 py-0.5 hover:bg-gray-100 ${onEditMode ? 'cursor-pointer': ''}`}
+      className={`flex items-center mb-3 px-4 py-0.5 hover:bg-gray-100 ${
+        onEditMode ? "cursor-pointer" : ""
+      }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={onEditMode ? addToMembers : undefined}
+      onClick={onEditMode ? () => addToMembers(member) : undefined}
     >
       <div className="rounded-full bg-gray-200 w-[44px] h-[44px]"></div>
       <div className="flex flex-col ml-4">
