@@ -1,40 +1,20 @@
 import React, { useState } from "react";
 import TeamIconAndName from "./TeamIconAndName";
 import MembersList from "./MembersList";
+import useUsers from "../hooks/useUsers";
 
 export default function AddMembers() {
   const [searchterm, setSearchTerm] = useState("");
   const [newMembers, setNewmembers] = useState([]);
 
-  const users = [
-    {
-      key: 1,
-      name: "Bessie Cooper",
-      roll: "Agent",
-    },
-    {
-      key: 2,
-      name: "Cameron Williamson",
-      roll: "Agent",
-    },
-    {
-      key: 3,
-      name: "Cameron Ray",
-      roll: "Agent",
-    },
-    {
-      key: 4,
-      name: "Cameron Marina",
-      roll: "Agent",
-    },
-  ];
+  const { data, error, isLoading } = useUsers();
 
   const filteredUsers =
     searchterm.length >= 1
-      ? users.filter((user) =>
+      ? data.filter((user) =>
           user.name.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase())
         )
-      : users;
+      : data;
 
   const addNewMember = (newMember) => {
     setNewmembers([...newMembers, newMember]);
@@ -42,8 +22,12 @@ export default function AddMembers() {
   };
 
   const allreadyAdded = (user) => {
-    return newMembers.some((item) => item.key === user.key);
+    return newMembers.some((item) => item.id === user.id);
   };
+
+  if (error) return null;
+
+  if (isLoading) return <div>loading...</div>;
 
   return (
     <div className="w-full">
@@ -69,15 +53,16 @@ export default function AddMembers() {
         />
       </div>
       <ul>
-        {filteredUsers.map((user, index) => (
-          <MembersList
-            disabled={allreadyAdded(user)}
-            member={user}
-            onEditMode={true}
-            key={user + index}
-            addToMembers={(newMember) => addNewMember(newMember)}
-          />
-        ))}
+        {data &&
+          filteredUsers.map((user, index) => (
+            <MembersList
+              disabled={allreadyAdded(user)}
+              member={user}
+              onEditMode={true}
+              key={user + index}
+              addToMembers={(newMember) => addNewMember(newMember)}
+            />
+          ))}
       </ul>
     </div>
   );
