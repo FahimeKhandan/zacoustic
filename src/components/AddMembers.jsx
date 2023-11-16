@@ -8,18 +8,22 @@ export default function AddMembers() {
 
   const users = [
     {
+      key: 1,
       name: "Bessie Cooper",
       roll: "Agent",
     },
     {
+      key: 2,
       name: "Cameron Williamson",
       roll: "Agent",
     },
     {
+      key: 3,
       name: "Cameron Ray",
       roll: "Agent",
     },
     {
+      key: 4,
       name: "Cameron Marina",
       roll: "Agent",
     },
@@ -35,6 +39,10 @@ export default function AddMembers() {
   const addNewMember = (newMember) => {
     setNewmembers([...newMembers, newMember]);
     setSearchTerm("");
+  };
+
+  const allreadyAdded = (user) => {
+    return newMembers.some((item) => item.key === user.key);
   };
 
   return (
@@ -63,6 +71,7 @@ export default function AddMembers() {
       <ul>
         {filteredUsers.map((user, index) => (
           <MembersList
+            disabled={allreadyAdded(user)}
             member={user}
             onEditMode={true}
             key={user + index}
