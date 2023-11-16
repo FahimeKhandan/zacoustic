@@ -30,7 +30,7 @@ export default function AddMembers() {
   if (isLoading) return <div>loading...</div>;
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col">
       <TeamIconAndName />
       <p className="text-secandary w-full px-6 mb-6">
         Add Members <span className="text-xs ml-2">6 / 13</span>
@@ -49,10 +49,10 @@ export default function AddMembers() {
           className="inline"
           onChange={(event) => setSearchTerm(event.target.value)}
           value={searchterm}
-          placeholder="Enter a name"
+          placeholder="Enter a name to filter..."
         />
       </div>
-      <ul>
+      <ul className="overflow-auto p-0">
         {data &&
           filteredUsers.map((user, index) => (
             <MembersList
