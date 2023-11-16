@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./App.css";
+import TeamInfo from "./components/TeamInfo";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const side =
-    "w-96 bg-white h-screen  transform transition-all fixed duration-7000 text-white flex justify-center p-2 left-full";
+    "w-[390px] bg-white h-screen  transform transition-all fixed duration-700 flex justify-center left-full";
   const activeSide = " -translate-x-[390px]";
 
   return (
@@ -19,7 +20,9 @@ function App() {
         </button>
       </div>
 
-      <div className={`${side} ${isMenuOpen ? activeSide : ""}`}></div>
+      <div className={`${side} ${isMenuOpen ? activeSide : ""}`}>
+        <TeamInfo/>
+      </div>
     </div>
   );
 }
