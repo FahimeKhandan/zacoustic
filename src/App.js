@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import TeamInfo from "./components/TeamInfo";
+import AddMembers from "./components/AddMembers";
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showAddMemberPanel, setShowAddMemberPanel] = useState(false);
+
+  const side =
+    "w-[390px] bg-white h-screen  transform transition-all fixed duration-700 flex justify-center left-full";
+  const activeSide = " -translate-x-[390px]";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="flex w-full h-screen">
+      <div className="bg-gray-700 grow p-10">
+        <button
+          className="bg-gray-200 p-4 text-primary-text"
+          onClick={() => setIsMenuOpen(true)}
         >
-          Learn React
-        </a>
-      </header>
+          Open The Menu
+        </button>
+      </div>
+
+      <div className={`${side} ${isMenuOpen ? activeSide : ""}`}>
+        <TeamInfo openAddMemberPanel={() => setShowAddMemberPanel(true)} closeModal={()=> setIsMenuOpen(false)}/>
+      </div>
+      <div className={`z-50 ${side} ${showAddMemberPanel ? activeSide : ""}`}>
+        <AddMembers closeModal={()=> setShowAddMemberPanel(false)}/>
+      </div>
     </div>
   );
 }
