@@ -3,17 +3,28 @@ import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import MembersList from "./MembersList";
 
-export default function TeamMembers({ openAddMemberPanel }) {
-  const members = [
-    {
-      name: "Bessie Cooper",
-      role: "Agent",
-    },
-    {
-      name: "Cameron Williamson",
-      role: "Agent",
-    },
-  ];
+import useTeams from "../hooks/useTeams";
+import useUser from "../hooks/useUser";
+
+export default function TeamMembersPanel({ openAddMemberPanel }) {
+  const { data: users } = useUser();
+
+  const {
+    data: teams,
+    error: teamsError,
+    isLoading: teamsIsloading,
+  } = useTeams(1);
+
+  const getMemberInfo = (memberId) => {
+    if (!users) return {};
+
+    const fullInfo = users.filter((item) => item.id === memberId);
+    return fullInfo.length ? fullInfo[0] : {};
+  };
+
+  if (teamsError) return null;
+
+  if (teamsIsloading) return <div>loading...</div>;
 
   return (
     <div>
@@ -28,9 +39,14 @@ export default function TeamMembers({ openAddMemberPanel }) {
         </button>
       </div>
       <ul>
-        {members.map((member, index) => (
-          <MembersList member={member} onEditMode={false} key={member + index} />
-        ))}
+        {teams &&
+          teams[0].members.map((memberId, index) => (
+            <MembersList
+              member={getMemberInfo(memberId)}
+              onEditMode={false}
+              key={memberId + index}
+            />
+          ))}
       </ul>
     </div>
   );

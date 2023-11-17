@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import TeamIconAndName from "./TeamIconAndName";
 import MembersList from "./MembersList";
-import useUsers from "../hooks/useUsers";
+import useUser from "../hooks/useUser";
 
 export default function AddMembers() {
+    
   const [searchterm, setSearchTerm] = useState("");
   const [newMembers, setNewmembers] = useState([]);
 
-  const { data, error, isLoading } = useUsers();
+  const { data, error, isLoading } = useUser();
 
   const filteredUsers =
     searchterm.length >= 1
@@ -21,7 +22,7 @@ export default function AddMembers() {
     setSearchTerm("");
   };
 
-  const allreadyAdded = (user) => {
+  const alreadyAdded = (user) => {
     return newMembers.some((item) => item.id === user.id);
   };
 
@@ -31,7 +32,7 @@ export default function AddMembers() {
 
   return (
     <div className="w-full flex flex-col">
-      <TeamIconAndName />
+      <TeamIconAndName name={data.name}/>
       <p className="text-secandary w-full px-6 mb-6">
         Add Members <span className="text-xs ml-2">6 / 13</span>
       </p>
@@ -56,7 +57,7 @@ export default function AddMembers() {
         {data &&
           filteredUsers.map((user, index) => (
             <MembersList
-              disabled={allreadyAdded(user)}
+              disabled={alreadyAdded(user)}
               member={user}
               onEditMode={true}
               key={user + index}

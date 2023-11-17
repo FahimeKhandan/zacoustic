@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const useUsers = (query) =>
+const useTeams = (query) =>
   useQuery({
-    queryKey: ["posts", query],
+    queryKey: ["teams", query],
     staleTime: 1 * 60 * 1000,
     keepPreviousData: true,
     queryFn: () =>
       axios
         .get(
-          "https://my-json-server.typicode.com/FahimeKhandan/zacoustic/users",
+          "https://my-json-server.typicode.com/FahimeKhandan/zacoustic/teams?id=1",
           {
             params: {},
           }
@@ -17,4 +17,4 @@ const useUsers = (query) =>
         .then((res) => res.data),
   });
 
-export default useUsers;
+export default useTeams;
