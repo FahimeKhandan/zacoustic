@@ -31,6 +31,11 @@ export default function AddMembers() {
     return isAnOldMember || isOnNewMembers;
   };
 
+  const removeMember = (userId)=>{
+    const newList = newMembers.filter(user => user.id !== userId)
+    setNewmembers(newList)
+  }
+
   const oldMembersCount = teams?.length ? teams[0].members.length : 0;
   const newMembersCount = newMembers?.length ? newMembers.length : 0;
   const usersCount = users ? users.length : 0;
@@ -50,7 +55,11 @@ export default function AddMembers() {
       </p>
       <div className="px-2 flex gap-x-4 gap-y-2 flex-wrap border-b border-gray-300 pb-2 mb-2">
         {newMembers.map((user) => (
-          <AddMemberChips key={user.id} user={user} />
+          <AddMemberChips
+            key={user.id}
+            user={user}
+            removeMember={() => removeMember(user.id)}
+          />
         ))}
         <input
           className="inline"
