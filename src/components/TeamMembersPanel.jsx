@@ -30,7 +30,7 @@ export default function TeamMembersPanel({ openAddMemberPanel }) {
     <div>
       <div className="bg-gray-100 w-full px-8 py-5 my-6">
         <PeopleAltOutlinedIcon className="mr-5 text-secandary" />
-        <span className="text-primary"> 6 members</span>
+        <span className="text-primary"> {teams ? teams[0].members.length : '...'} members</span>
         <button
           className="float-right text-secandary"
           onClick={() => openAddMemberPanel()}
