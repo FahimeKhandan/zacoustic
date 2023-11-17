@@ -5,7 +5,7 @@ import useUser from "../hooks/useUser";
 import useTeams from "../hooks/useTeams";
 import AddMemberChips from "./AddMemberChips";
 
-export default function AddMembers() {
+export default function AddMembers({closeModal}) {
   const [searchterm, setSearchTerm] = useState("");
   const [newMembers, setNewmembers] = useState([]);
 
@@ -31,10 +31,10 @@ export default function AddMembers() {
     return isAnOldMember || isOnNewMembers;
   };
 
-  const removeMember = (userId)=>{
-    const newList = newMembers.filter(user => user.id !== userId)
-    setNewmembers(newList)
-  }
+  const removeMember = (userId) => {
+    const newList = newMembers.filter((user) => user.id !== userId);
+    setNewmembers(newList);
+  };
 
   const oldMembersCount = teams?.length ? teams[0].members.length : 0;
   const newMembersCount = newMembers?.length ? newMembers.length : 0;
@@ -46,6 +46,12 @@ export default function AddMembers() {
 
   return (
     <div className="w-full flex flex-col">
+      <div className="flex px-8 py-5">
+        <button className="font-font-medium" onClick={() => closeModal()}>
+          Cancel
+        </button>
+        <button className="ml-auto text-anhancer font-medium">Submit</button>
+      </div>
       <TeamIconAndName name={users.name} />
       <p className="text-secandary w-full px-6 mb-6">
         Add Members{" "}

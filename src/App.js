@@ -26,7 +26,7 @@ function App() {
         <TeamInfo openAddMemberPanel={() => setShowAddMemberPanel(true)} closeModal={()=> setIsMenuOpen(false)}/>
       </div>
       <div className={`z-50 ${side} ${showAddMemberPanel ? activeSide : ""}`}>
-        <AddMembers />
+        <AddMembers closeModal={()=> setShowAddMemberPanel(false)}/>
       </div>
     </div>
   );
