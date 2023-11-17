@@ -1,6 +1,10 @@
 import React from "react";
+
+//components
 import TeamIconAndName from "./TeamIconAndName";
 import TeamMembers from "./TeamMembersPanel";
+
+//material icons
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 

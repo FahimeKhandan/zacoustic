@@ -9,7 +9,7 @@ const useTeams = (query) =>
     queryFn: () =>
       axios
         .get(
-          "https://my-json-server.typicode.com/FahimeKhandan/zacoustic/teams?id=1",
+          `https://my-json-server.typicode.com/FahimeKhandan/zacoustic/teams?id=${query}`,
           {
             params: {},
           }
@@ -17,4 +17,4 @@ const useTeams = (query) =>
         .then((res) => res.data),
   });
 
-export default useTeams;
+export { useTeams };

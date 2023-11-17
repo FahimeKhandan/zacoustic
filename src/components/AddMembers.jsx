@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+
+//components
 import TeamIconAndName from "./TeamIconAndName";
 import MembersList from "./MembersList";
-import useUser from "../hooks/useUser";
-import useTeams from "../hooks/useTeams";
 import AddMemberChips from "./AddMemberChips";
 
-export default function AddMembers({closeModal}) {
+//custom hooks
+import useUser from "../hooks/useUser";
+import { useTeams } from "../hooks/useTeams";
+
+export default function AddMembers({ closeModal }) {
   const [searchterm, setSearchTerm] = useState("");
   const [newMembers, setNewmembers] = useState([]);
 
@@ -25,8 +29,8 @@ export default function AddMembers({closeModal}) {
   };
 
   const alreadyAdded = (user) => {
-    const isOnNewMembers = newMembers.some((item) => item.id === user.id);
-    const isAnOldMember = teams.some((item) => item.members.includes(user.id));
+    const isOnNewMembers = newMembers?.some((item) => item.id === user.id);
+    const isAnOldMember = teams?.some((item) => item.members.includes(user.id));
 
     return isAnOldMember || isOnNewMembers;
   };

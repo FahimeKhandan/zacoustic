@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+//components
 import CheckIcon from "@mui/icons-material/Check";
 
 export default function MembersList({
@@ -6,6 +8,7 @@ export default function MembersList({
   onEditMode,
   addToMembers,
   disabled,
+  removeMember,
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -24,7 +27,12 @@ export default function MembersList({
         <span className="text-disabled">{member.role}</span>
       </div>
       {isHovered && !onEditMode && (
-        <button className="text-anhancer ml-auto">Remove</button>
+        <button
+          className="text-anhancer ml-auto"
+          onClick={() => removeMember()}
+        >
+          Remove
+        </button>
       )}
       {disabled && <CheckIcon className="text-anhancer ml-auto" />}
     </li>

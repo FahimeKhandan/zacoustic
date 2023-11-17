@@ -1,5 +1,7 @@
 import React from "react";
-import useTeams from "../hooks/useTeams";
+
+//custom hooks
+import {useTeams} from "../hooks/useTeams";
 
 export default function TeamIconAndName() {
   const { data, error, isLoading } = useTeams(1);
