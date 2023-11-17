@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CheckIcon from "@mui/icons-material/Check";
 
 export default function MembersList({
   member,
@@ -8,7 +9,6 @@ export default function MembersList({
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  
   return (
     <li
       className={`flex items-center mb-3 px-4 py-0.5 hover:bg-gray-100 ${
@@ -26,6 +26,7 @@ export default function MembersList({
       {isHovered && !onEditMode && (
         <button className="text-anhancer ml-auto">Remove</button>
       )}
+      {disabled && <CheckIcon className="text-anhancer ml-auto" />}
     </li>
   );
 }

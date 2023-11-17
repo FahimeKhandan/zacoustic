@@ -8,14 +8,14 @@ export default function AddMembers() {
   const [searchterm, setSearchTerm] = useState("");
   const [newMembers, setNewmembers] = useState([]);
 
-  const { data, error, isLoading } = useUser();
+  const { data: users, error, isLoading } = useUser();
 
   const filteredUsers =
     searchterm.length >= 1
-      ? data.filter((user) =>
+      ? users.filter((user) =>
           user.name.toLocaleLowerCase().includes(searchterm.toLocaleLowerCase())
         )
-      : data;
+      : users;
 
   const addNewMember = (newMember) => {
     setNewmembers([...newMembers, newMember]);
@@ -32,7 +32,7 @@ export default function AddMembers() {
 
   return (
     <div className="w-full flex flex-col">
-      <TeamIconAndName name={data.name}/>
+      <TeamIconAndName name={users.name} />
       <p className="text-secandary w-full px-6 mb-6">
         Add Members <span className="text-xs ml-2">6 / 13</span>
       </p>
@@ -54,7 +54,7 @@ export default function AddMembers() {
         />
       </div>
       <ul className="overflow-auto p-0">
-        {data &&
+        {users &&
           filteredUsers.map((user, index) => (
             <MembersList
               disabled={alreadyAdded(user)}
