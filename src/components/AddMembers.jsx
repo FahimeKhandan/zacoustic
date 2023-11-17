@@ -31,6 +31,10 @@ export default function AddMembers() {
     return isAnOldMember || isOnNewMembers;
   };
 
+  const oldMembersCount = teams?.length ? teams[0].members.length : 0;
+  const newMembersCount = newMembers?.length ? newMembers.length : 0;
+  const usersCount = users ? users.length : 0;
+
   if (error) return null;
 
   if (isLoading) return <div>loading...</div>;
@@ -39,12 +43,12 @@ export default function AddMembers() {
     <div className="w-full flex flex-col">
       <TeamIconAndName name={users.name} />
       <p className="text-secandary w-full px-6 mb-6">
-        Add Members <span className="text-xs ml-2">6 / 13</span>
+        Add Members{" "}
+        <span className="text-xs ml-2">
+          {oldMembersCount + newMembersCount} / {usersCount}
+        </span>
       </p>
       <div className="px-2 flex gap-x-4 gap-y-2 flex-wrap border-b border-gray-300 pb-2 mb-2">
-        {newMembers.map((user) => (
-          <AddMemberChips key={user.id} user={user} />
-        ))}
         {newMembers.map((user) => (
           <AddMemberChips key={user.id} user={user} />
         ))}
