@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import TeamIconAndName from "./TeamIconAndName";
 import MembersList from "./MembersList";
 import useUser from "../hooks/useUser";
+import useTeams from "../hooks/useTeams";
+import AddMemberChips from "./AddMemberChips";
 
 export default function AddMembers() {
-    
   const [searchterm, setSearchTerm] = useState("");
   const [newMembers, setNewmembers] = useState([]);
 
   const { data: users, error, isLoading } = useUser();
+  const { data: teams } = useTeams(1);
 
   const filteredUsers =
     searchterm.length >= 1
@@ -23,7 +25,10 @@ export default function AddMembers() {
   };
 
   const alreadyAdded = (user) => {
-    return newMembers.some((item) => item.id === user.id);
+    const isOnNewMembers = newMembers.some((item) => item.id === user.id);
+    const isAnOldMember = teams.some((item) => item.members.includes(user.id));
+
+    return isAnOldMember || isOnNewMembers;
   };
 
   if (error) return null;
@@ -37,14 +42,11 @@ export default function AddMembers() {
         Add Members <span className="text-xs ml-2">6 / 13</span>
       </p>
       <div className="px-2 flex gap-x-4 gap-y-2 flex-wrap border-b border-gray-300 pb-2 mb-2">
-        {newMembers.map((user, index) => (
-          <div
-            className="flex items-center rounded-full bg-gray-100 pr-2 max-w-[148px]"
-            key={user + index}
-          >
-            <div className="rounded-full bg-secandary-200 min-w-[32px] w-8 h-8"></div>
-            <p className="truncate text-xs text-primary ml-2"> {user.name}</p>
-          </div>
+        {newMembers.map((user) => (
+          <AddMemberChips key={user.id} user={user} />
+        ))}
+        {newMembers.map((user) => (
+          <AddMemberChips key={user.id} user={user} />
         ))}
         <input
           className="inline"
